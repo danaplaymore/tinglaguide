@@ -325,6 +325,40 @@ color:#C8B88C;
 font-weight:bold;
 }
 
+.reveal-target{
+will-change:opacity, transform, filter;
+transition:
+opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.reveal-ready .reveal-target{
+opacity:0;
+transform:translate3d(0, 24px, 0);
+filter:blur(2px);
+}
+
+body.reveal-ready .shops-hero .reveal-target{
+transform:translate3d(0, 20px, 0);
+}
+
+body.reveal-ready .region-btn.reveal-target,
+body.reveal-ready .shop-item.reveal-target{
+transform:translate3d(0, 20px, 0) scale(0.985);
+}
+
+body.reveal-ready .region-buttons.reveal-target,
+body.reveal-ready .shop-list.reveal-target{
+transform:translate3d(0, 20px, 0) scale(0.99);
+}
+
+body.reveal-ready .reveal-target.reveal-visible{
+opacity:1;
+transform:translate3d(0, 0, 0) scale(1);
+filter:blur(0);
+}
+
 /* ================= MOBILE ================= */
 
 @media(max-width:900px){
@@ -461,6 +495,24 @@ width:100%;
 
 <script>
 
+var navigationEntries = window.performance && performance.getEntriesByType ? performance.getEntriesByType("navigation") : [];
+var isReloadNavigation = (navigationEntries.length > 0 && navigationEntries[0].type === "reload") || (window.performance && performance.navigation && performance.navigation.type === 1);
+
+if("scrollRestoration" in history){
+history.scrollRestoration = "manual";
+}
+
+if(isReloadNavigation){
+window.scrollTo(0, 0);
+
+window.addEventListener("load", function(){
+window.scrollTo(0, 0);
+requestAnimationFrame(function(){
+window.scrollTo(0, 0);
+});
+});
+}
+
 function toggleMenu(){
 
 var menu=document.getElementById("mobileMenu");
@@ -504,6 +556,8 @@ var shopData = {
 전남: [],
 제주: []
 };
+
+var revealObserver = null;
 
 function initFamilySiteSelect(){
 
@@ -559,6 +613,8 @@ selectRegion(this.textContent);
 regionButtonsContainer.appendChild(button);
 }
 
+registerRevealElements(regionButtonsContainer.children);
+
 selectRegion("서울");
 
 }
@@ -584,6 +640,7 @@ var emptyMessage = document.createElement("div");
 emptyMessage.style.cssText = "grid-column:1/-1;text-align:center;padding:40px;color:#aaa;font-size:16px;";
 emptyMessage.textContent = "지점 평가 진행 중입니다.";
 shopListContainer.appendChild(emptyMessage);
+registerRevealElements(shopListContainer.children);
 return;
 }
 
@@ -610,9 +667,82 @@ shopItem.innerHTML = "<h4>" + shop.name + "</h4>" +
 shopListContainer.appendChild(shopItem);
 }
 
+registerRevealElements(shopListContainer.children);
+
+}
+
+function registerRevealElements(elements){
+
+if(!elements || !elements.length){
+return;
+}
+
+for(var i = 0; i < elements.length; i++){
+var element = elements[i];
+
+if(!element){
+continue;
+}
+
+if(!element.classList.contains("reveal-target")){
+element.classList.add("reveal-target");
+
+var revealContainer = element.closest("section, main, .shops-wrap, .region-buttons, .shop-list");
+if(revealContainer){
+var containerSequence = Number(revealContainer.getAttribute("data-reveal-sequence") || 0);
+element.style.transitionDelay = Math.min(containerSequence * 85, 340) + "ms";
+revealContainer.setAttribute("data-reveal-sequence", containerSequence + 1);
+}
+}
+
+if(revealObserver){
+revealObserver.observe(element);
+} else {
+element.classList.add("reveal-visible");
+}
+}
+
+}
+
+function initScrollReveal(){
+
+var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if(!reduceMotion){
+document.body.classList.add("reveal-ready");
+
+revealObserver = new IntersectionObserver(function(entries, observer){
+for(var i = 0; i < entries.length; i++){
+var entry = entries[i];
+
+if(entry.isIntersecting){
+entry.target.classList.add("reveal-visible");
+observer.unobserve(entry.target);
+}
+}
+}, {
+threshold: 0.14,
+rootMargin: "0px 0px -8% 0px"
+});
+}
+
+var revealSelectors = [
+".shops-hero h1",
+".region-buttons",
+"#regionButtons .region-btn",
+".shop-list",
+"#shopList > div",
+".btn-gold",
+"footer .footer-inner"
+];
+
+var revealElements = document.querySelectorAll(revealSelectors.join(","));
+registerRevealElements(revealElements);
+
 }
 
 initFamilySiteSelect();
+initScrollReveal();
 initRegionButtons();
 
 // 메뉴 외부 클릭 시 메뉴 닫기

@@ -1053,6 +1053,24 @@ TINGLA 공식 네트워크에 등록됩니다.
 
 <script>
 
+var navigationEntries = window.performance && performance.getEntriesByType ? performance.getEntriesByType("navigation") : [];
+var isReloadNavigation = (navigationEntries.length > 0 && navigationEntries[0].type === "reload") || (window.performance && performance.navigation && performance.navigation.type === 1);
+
+if("scrollRestoration" in history){
+history.scrollRestoration = "manual";
+}
+
+if(isReloadNavigation){
+window.scrollTo(0, 0);
+
+window.addEventListener("load", function(){
+window.scrollTo(0, 0);
+requestAnimationFrame(function(){
+window.scrollTo(0, 0);
+});
+});
+}
+
 function toggleMenu(){
 
 var menu=document.getElementById("mobileMenu");

@@ -239,6 +239,11 @@ color:#000;
 border-color:#C8B88C;
 }
 
+.submit-btn:disabled{
+opacity:0.65;
+cursor:not-allowed;
+}
+
 footer{
 padding:60px 10%;
 background:#000;
@@ -336,6 +341,35 @@ content:'↑';
 font-size:24px;
 color:#C8B88C;
 font-weight:bold;
+}
+
+.reveal-target{
+will-change:opacity, transform, filter;
+transition:
+opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.reveal-ready .reveal-target{
+opacity:0;
+transform:translate3d(0, 24px, 0);
+filter:blur(2px);
+}
+
+body.reveal-ready .certification-hero .reveal-target,
+body.reveal-ready .form-section .reveal-target{
+transform:translate3d(0, 20px, 0);
+}
+
+body.reveal-ready .form-group.reveal-target{
+transform:translate3d(0, 20px, 0) scale(0.985);
+}
+
+body.reveal-ready .reveal-target.reveal-visible{
+opacity:1;
+transform:translate3d(0, 0, 0) scale(1);
+filter:blur(0);
 }
 
 /* ================= MOBILE ================= */
@@ -440,7 +474,7 @@ width:100%;
 
 <p style="color:#aaa; margin-bottom:20px;">* 표시는 필수 입력항목입니다</p>
 
-<form id="certificationForm" method="POST" action="https://script.google.com/macros/s/AKfycbxC9wbMLF1H2O213M4bU0RrjOeYkJhzDXQi0zE5hU_PuycB0lmJxUtFFdgzqE6vmKbe2w/exec">
+<form id="certificationForm" method="POST" action="https://formsubmit.co/tingla1472@gmail.com">
 
 <div class="form-group">
 <label>이름 <span class="required">*</span></label>
@@ -499,12 +533,12 @@ width:100%;
 <label>레인보우</label>
 </div>
 <div class="checkbox-item">
-<input type="checkbox" name="brands" value="루마/버텍스">
-<label>루마/버텍스</label>
+<input type="checkbox" name="brands" value="루마버텍스">
+<label>루마버텍스</label>
 </div>
 <div class="checkbox-item">
-<input type="checkbox" name="brands" value="블락포">
-<label>블락포</label>
+<input type="checkbox" name="brands" value="블락포디">
+<label>블락포디</label>
 </div>
 <div class="checkbox-item">
 <input type="checkbox" name="brands" value="솔라가드">
@@ -547,32 +581,28 @@ width:100%;
 <label>티벡스</label>
 </div>
 <div class="checkbox-item">
-<input type="checkbox" name="brands" value="틴트">
-<label>틴트</label>
+<input type="checkbox" name="brands" value="틴트어카">
+<label>틴트어카</label>
 </div>
 <div class="checkbox-item">
-<input type="checkbox" name="brands" value="어카">
-<label>어카</label>
+<input type="checkbox" name="brands" value="하버캠프">
+<label>하버캠프</label>
 </div>
 <div class="checkbox-item">
-<input type="checkbox" name="brands" value="하버">
-<label>하버</label>
+<input type="checkbox" name="brands" value="후퍼옵틱">
+<label>후퍼옵틱</label>
 </div>
 <div class="checkbox-item">
-<input type="checkbox" name="brands" value="캠프">
-<label>캠프</label>
+<input type="checkbox" name="brands" value="브이쿨">
+<label>브이쿨</label>
 </div>
 <div class="checkbox-item">
-<input type="checkbox" name="brands" value="후퍼">
-<label>후퍼</label>
+<input type="checkbox" name="brands" value="마디코">
+<label>마디코</label>
 </div>
 <div class="checkbox-item">
-<input type="checkbox" name="brands" value="옵틱">
-<label>옵틱</label>
-</div>
-<div class="checkbox-item">
-<input type="checkbox" name="brands" value="SKC">
-<label>SKC</label>
+<input type="checkbox" name="brands" value="넥스필">
+<label>넥스필</label>
 </div>
 <div class="checkbox-item">
 <input type="checkbox" name="brands" value="기타">
@@ -620,6 +650,12 @@ width:100%;
 <button type="submit" class="submit-btn">신청하기</button>
 </div>
 
+<input type="hidden" name="_subject" id="mailSubjectField" value="[TINGLA GUIDE] 시공점 인증 신청">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="text" name="_honey" style="display:none">
+<input type="hidden" name="brandsSummary" id="brandsSummaryField" value="">
+
 </form>
 
 </div>
@@ -659,6 +695,24 @@ width:100%;
 <div class="scroll-btn top" onclick="scrollToTop()"></div>
 
 <script>
+
+var navigationEntries = window.performance && performance.getEntriesByType ? performance.getEntriesByType("navigation") : [];
+var isReloadNavigation = (navigationEntries.length > 0 && navigationEntries[0].type === "reload") || (window.performance && performance.navigation && performance.navigation.type === 1);
+
+if("scrollRestoration" in history){
+history.scrollRestoration = "manual";
+}
+
+if(isReloadNavigation){
+window.scrollTo(0, 0);
+
+window.addEventListener("load", function(){
+window.scrollTo(0, 0);
+requestAnimationFrame(function(){
+window.scrollTo(0, 0);
+});
+});
+}
 
 function toggleMenu(){
 
@@ -714,45 +768,219 @@ selectElement.blur();
 
 }
 
-document.getElementById('certificationForm').addEventListener('submit', function(e){
-e.preventDefault();
+var certificationForm = document.getElementById('certificationForm');
+var isFormSubmitting = false;
+var isFileProtocol = window.location.protocol === 'file:';
+var revealObserver = null;
 
-var form = this;
+function registerRevealElements(elements){
+if(!elements || !elements.length){
+return;
+}
+
+for(var i = 0; i < elements.length; i++){
+var element = elements[i];
+
+if(!element){
+continue;
+}
+
+if(!element.classList.contains('reveal-target')){
+element.classList.add('reveal-target');
+
+var revealContainer = element.closest('section, main, .certification-wrap, .form-section');
+if(revealContainer){
+var containerSequence = Number(revealContainer.getAttribute('data-reveal-sequence') || 0);
+element.style.transitionDelay = Math.min(containerSequence * 85, 340) + 'ms';
+revealContainer.setAttribute('data-reveal-sequence', containerSequence + 1);
+}
+}
+
+if(revealObserver){
+revealObserver.observe(element);
+} else {
+element.classList.add('reveal-visible');
+}
+}
+}
+
+function initScrollReveal(){
+var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if(!reduceMotion){
+document.body.classList.add('reveal-ready');
+
+revealObserver = new IntersectionObserver(function(entries, observer){
+for(var i = 0; i < entries.length; i++){
+var entry = entries[i];
+
+if(entry.isIntersecting){
+entry.target.classList.add('reveal-visible');
+observer.unobserve(entry.target);
+}
+}
+}, {
+threshold: 0.14,
+rootMargin: '0px 0px -8% 0px'
+});
+}
+
+var revealSelectors = [
+'.certification-hero h1',
+'.form-section h2',
+'.form-section > p',
+'.form-group',
+'.form-actions',
+'footer .footer-inner'
+];
+
+var revealElements = document.querySelectorAll(revealSelectors.join(','));
+registerRevealElements(revealElements);
+}
+
+if(certificationForm){
+var submitButton = certificationForm.querySelector('.submit-btn');
+var brandsSummaryField = document.getElementById('brandsSummaryField');
+var mailSubjectField = document.getElementById('mailSubjectField');
+
+function syncBrandsSummary(selectedBrands){
+var brandsSummary = [];
+for(var selectedIndex = 0; selectedIndex < selectedBrands.length; selectedIndex++){
+brandsSummary.push(selectedBrands[selectedIndex].value);
+}
+
+if(brandsSummaryField){
+brandsSummaryField.value = brandsSummary.join(', ');
+}
+
+return brandsSummary;
+}
+
+function syncMailSubject(){
+var nameInput = certificationForm.querySelector('input[name="name"]');
+var applicantName = nameInput && nameInput.value ? nameInput.value.trim() : '';
+var subjectText = applicantName
+? '[TINGLA GUIDE] 시공점 인증 신청 - ' + applicantName
+: '[TINGLA GUIDE] 시공점 인증 신청';
+
+if(mailSubjectField){
+mailSubjectField.value = subjectText;
+}
+
+return subjectText;
+}
+
+function buildOrderedFormData(subjectText, brandsText){
+var sourceFormData = new FormData(certificationForm);
+var orderedFormData = new FormData();
+
+orderedFormData.append('name', String(sourceFormData.get('name') || ''));
+orderedFormData.append('연락처', String(sourceFormData.get('phone') || ''));
+orderedFormData.append('매장 상세주소', String(sourceFormData.get('address') || ''));
+orderedFormData.append('매장운영 여부', String(sourceFormData.get('operatingStatus') || ''));
+orderedFormData.append('매장규모', String(sourceFormData.get('shopSize') || ''));
+orderedFormData.append('취급 틴팅 브랜드', brandsText);
+
+var otherBrandValue = String(sourceFormData.get('otherBrand') || '').trim();
+if(otherBrandValue){
+orderedFormData.append('기타 브랜드명', otherBrandValue);
+}
+
+orderedFormData.append('기타 요청사항', String(sourceFormData.get('message') || ''));
+orderedFormData.append('개인정보 활용 동의', sourceFormData.get('agree1') ? '동의' : '미동의');
+orderedFormData.append('제3자 정보제공 동의', sourceFormData.get('agree2') ? '동의' : '미동의');
+
+orderedFormData.append('_subject', subjectText);
+orderedFormData.append('_captcha', 'false');
+orderedFormData.append('_template', 'table');
+orderedFormData.append('_honey', '');
+
+return orderedFormData;
+}
+
+function setSubmitState(submitting){
+isFormSubmitting = submitting;
+
+if(submitButton){
+submitButton.disabled = submitting;
+submitButton.textContent = submitting ? '전송 중...' : '신청하기';
+}
+}
+
+certificationForm.addEventListener('submit', function(event){
+event.preventDefault();
+
+if(isFormSubmitting){
+return;
+}
+
+if(!certificationForm.checkValidity()){
+certificationForm.reportValidity();
+return;
+}
+
 var selectedBrands = document.querySelectorAll('input[name="brands"]:checked');
-var brands = Array.from(selectedBrands).map(function(checkbox){
-return checkbox.value;
-}).join(', ');
-var operatingStatusInput = document.querySelector('input[name="operatingStatus"]:checked');
-var otherBrandInput = document.querySelector('input[name="otherBrand"]');
+if(selectedBrands.length === 0){
+alert('취급 틴팅 브랜드를 1개 이상 선택해주세요.');
+return;
+}
 
-var payload = new URLSearchParams();
-payload.append('name', document.querySelector('input[name="name"]').value);
-payload.append('phone', document.querySelector('input[name="phone"]').value);
-payload.append('address', document.querySelector('input[name="address"]').value);
-payload.append('operatingStatus', operatingStatusInput ? operatingStatusInput.value : '');
-payload.append('shopSize', document.querySelector('input[name="shopSize"]').value);
-payload.append('brands', brands);
-payload.append('otherBrand', otherBrandInput ? otherBrandInput.value : '');
-payload.append('message', document.querySelector('textarea[name="message"]').value);
+setSubmitState(true);
 
-fetch('https://script.google.com/macros/s/AKfycbxC9wbMLF1H2O213M4bU0RrjOeYkJhzDXQi0zE5hU_PuycB0lmJxUtFFdgzqE6vmKbe2w/exec', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-  },
-  body: payload.toString(),
-  mode: 'no-cors'
+var brandsSummary = syncBrandsSummary(selectedBrands);
+var subjectText = syncMailSubject();
+
+if(isFileProtocol){
+certificationForm.submit();
+return;
+}
+
+var formData = buildOrderedFormData(subjectText, brandsSummary.join(', '));
+
+fetch('https://formsubmit.co/ajax/tingla1472@gmail.com', {
+method: 'POST',
+headers: {
+'Accept': 'application/json'
+},
+body: formData
 })
-.then(function() {
-  alert('신청이 완료되었습니다. 곧 연락드리겠습니다.');
-  form.reset();
-  document.getElementById('otherBrandGroup').style.display = 'none';
+.then(function(response){
+return response.json().catch(function(){
+return { success: false, message: '응답을 확인할 수 없습니다.' };
+});
 })
-.catch(function(error) {
-  console.error('Error:', error);
-  alert('오류가 발생했습니다. 다시 시도해주세요.');
+.then(function(result){
+var success = result && (result.success === true || result.success === 'true');
+if(success){
+alert('신청이 완료되었습니다.');
+certificationForm.reset();
+document.getElementById('otherBrandGroup').style.display = 'none';
+return;
+}
+
+var resultMessage = result && (result.message || result.error) ? String(result.message || result.error) : '';
+var lowerMessage = resultMessage.toLowerCase();
+
+if(lowerMessage.indexOf('open this page through a web server') !== -1 || lowerMessage.indexOf('html files') !== -1){
+certificationForm.submit();
+return;
+}
+
+if(lowerMessage.indexOf('confirm') !== -1 || lowerMessage.indexOf('activate') !== -1){
+alert('FormSubmit 활성화가 필요합니다. tingla1472@gmail.com 메일함(스팸함 포함)에서 확인 메일 링크를 먼저 눌러주세요.');
+return;
+}
+
+alert(resultMessage || '전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
+})
+.catch(function(){
+alert('전송 중 오류가 발생했습니다. 네트워크 상태를 확인해주세요.');
+})
+.then(function(){
+setSubmitState(false);
 });
 });
+}
 
 // 기타 브랜드 선택 시 텍스트 입력 필드 표시
 var phoneInput = document.querySelector('input[name="phone"]');
@@ -793,6 +1021,7 @@ otherBrandGroup.style.display = 'none';
 });
 
 initFamilySiteSelect();
+initScrollReveal();
 
 // 메뉴 외부 클릭 시 메뉴 닫기
 document.addEventListener('click', function(event) {
