@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TINGLA GUIDE - 시공점 인증 신청</title>
+<meta name="description" content="프리미엄 자동차 썬팅 브랜드 팅글라 시공사 인증 가이드">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TINGLA GUIDE">
+<meta property="og:description" content="프리미엄 자동차 썬팅 브랜드 팅글라 시공사 인증 가이드">
+<meta property="og:image" content="og_tinglaguide.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TINGLA GUIDE">
+<meta name="twitter:description" content="프리미엄 자동차 썬팅 브랜드 팅글라 시공사 인증 가이드">
+<meta name="twitter:image" content="og_tinglaguide.png">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#0a0a0a;
+color:white;
+line-height:1.6;
+}
+
+/* ================= HEADER ================= */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#000;
+padding:20px 10%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid #222;
+z-index:999;
+}
+
+.logo{
+height:60px;
+cursor:pointer;
+}
+
+/* PC 메뉴 */
+
+nav{
+display:flex;
+gap:30px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-size:15px;
+opacity:0.85;
+}
+
+nav a:hover{
+opacity:1;
+}
+
+/* 햄버거 */
+
+.menu-toggle{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* ================= MOBILE MENU ================= */
+
+.mobile-menu{
+
+position:fixed;
+top:0;
+right:-100%;
+width:50%;
+height:100%;
+background:#000;
+display:flex;
+flex-direction:column;
+padding-top:100px;
+transition:0.3s;
+z-index:998;
+
+}
+
+.mobile-menu a{
+
+padding:20px 30px;
+border-bottom:1px solid #111;
+text-decoration:none;
+color:white;
+font-size:16px;
+
+}
+
+.mobile-menu.show{
+
+right:0;
+
+}
+
+/* ================= CONTENT ================= */
+
+.certification-wrap{
+max-width:1200px;
+margin:0 auto;
+padding:170px 10% 80px;
+}
+
+.certification-hero{
+margin-bottom:50px;
+}
+
+.certification-hero h1{
+font-size:24px;
+line-height:1.2;
+color:#fff;
+margin-bottom:20px;
+}
+
+.certification-hero h1 span{
+color:#C8B88C;
+}
+
+.form-section{
+background:#111;
+border:1px solid #333;
+padding:40px;
+border-radius:4px;
+margin-top:40px;
+}
+
+.form-section h2{
+font-size:30px;
+margin-bottom:30px;
+color:#fff;
+}
+
+.form-section h2 span{
+color:#C8B88C;
+}
+
+.form-group{
+margin-bottom:25px;
+}
+
+.form-group label{
+display:block;
+margin-bottom:8px;
+color:#fff;
+font-weight:bold;
+}
+
+.required{
+color:#C8B88C;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+width:100%;
+padding:12px;
+background:#0a0a0a;
+border:1px solid #333;
+color:#fff;
+border-radius:4px;
+font-size:14px;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+outline:none;
+border-color:#C8B88C;
+}
+
+.form-group textarea{
+resize:vertical;
+min-height:120px;
+}
+
+.checkbox-group{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-top:10px;
+}
+
+.checkbox-item{
+display:flex;
+align-items:center;
+}
+
+.checkbox-item input{
+width:auto;
+margin-right:8px;
+cursor:pointer;
+}
+
+.checkbox-item label{
+margin:0;
+cursor:pointer;
+font-weight:normal;
+}
+
+.form-actions{
+text-align:center;
+margin-top:40px;
+}
+
+.submit-btn{
+display:inline-block;
+padding:18px 50px;
+background:#111;
+color:#C8B88C;
+border:1px solid #C8B88C;
+border-radius:4px;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+transition:all 0.3s;
+}
+
+.submit-btn:hover{
+background:#C8B88C;
+color:#000;
+border-color:#C8B88C;
+}
+
+footer{
+padding:60px 10%;
+background:#000;
+color:#777;
+font-size:14px;
+border-top:1px solid #222;
+}
+
+.footer-inner{
+max-width:1100px;
+margin:0 auto;
+}
+
+.footer-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+margin-bottom:26px;
+}
+
+.footer-logo{
+height:42px;
+width:auto;
+cursor:pointer;
+}
+
+.family-site-select{
+background:#000;
+color:white;
+border:1px solid #333;
+padding:10px 14px;
+font-size:14px;
+min-width:220px;
+cursor:pointer;
+}
+
+.family-site-select:focus{
+outline:none;
+border-color:#C8B88C;
+}
+
+.footer-info p{
+margin-bottom:8px;
+}
+
+.footer-info a{
+color:#777;
+text-decoration:none;
+}
+
+.footer-info a:hover{
+color:white;
+}
+
+.tingla-brand{
+color:#C8B88C;
+}
+
+.footer-copyright{
+text-align:center;
+border-top:1px solid #333;
+margin-top:30px;
+padding-top:20px;
+color:#555;
+font-size:12px;
+}
+
+.scroll-btn{
+position:fixed;
+bottom:30px;
+right:30px;
+width:50px;
+height:50px;
+border-radius:50%;
+background:#111;
+border:2px solid #333;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:2px;
+cursor:pointer;
+z-index:100;
+transition:all 0.3s;
+}
+
+.scroll-btn:hover{
+background:#222;
+border-color:#C8B88C;
+}
+
+.scroll-btn.top::after{
+content:'↑';
+font-size:24px;
+color:#C8B88C;
+font-weight:bold;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+nav{
+display:none;
+}
+
+.menu-toggle{
+display:block;
+}
+
+.logo{
+height:55px;
+}
+
+.certification-wrap{
+padding:135px 6% 60px;
+}
+
+.certification-hero h1{
+font-size:24px;
+}
+
+.hero-info{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.form-section{
+padding:20px;
+}
+
+.form-section h2{
+font-size:24px;
+}
+
+.checkbox-group{
+grid-template-columns:1fr;
+}
+
+.footer-top{
+flex-direction:column;
+align-items:flex-start;
+margin-bottom:22px;
+}
+
+.footer-logo{
+height:38px;
+}
+
+.family-site-select{
+width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<img src="logo_tingla.png" class="logo" onclick="goHome()">
+
+<nav>
+
+<a href="product.html">제품 소개</a>
+<a href="pricing.html">가격표</a>
+<a href="https://smartstore.naver.com/tingla" target="_blank" rel="noopener noreferrer">구매하기</a>
+<a href="shops.html">시공점 찾기</a>
+<a href="certification.html">시공점 인증 신청</a>
+
+</nav>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+
+<a href="product.html">제품 소개</a>
+<a href="pricing.html">가격표</a>
+<a href="https://smartstore.naver.com/tingla" target="_blank" rel="noopener noreferrer">구매하기</a>
+<a href="shops.html">시공점 찾기</a>
+<a href="certification.html">시공점 인증 신청</a>
+
+</div>
+
+<div class="certification-wrap">
+
+<div class="certification-hero">
+<h1><span class="tingla-brand">TINGLA GUIDE</span> 시공점 인증 신청</h1>
+</div>
+
+<div class="form-section">
+<h2>온라인 <span>인증 신청</span></h2>
+
+<p style="color:#aaa; margin-bottom:20px;">* 표시는 필수 입력항목입니다</p>
+
+<form id="certificationForm" method="POST" action="https://script.google.com/macros/s/AKfycbxC9wbMLF1H2O213M4bU0RrjOeYkJhzDXQi0zE5hU_PuycB0lmJxUtFFdgzqE6vmKbe2w/exec">
+
+<div class="form-group">
+<label>이름 <span class="required">*</span></label>
+<input type="text" name="name" required placeholder="성명을 입력해주세요">
+</div>
+
+<div class="form-group">
+<label>연락처 <span class="required">*</span></label>
+<input type="tel" name="phone" required maxlength="11" inputmode="numeric" pattern="[0-9]{1,11}" placeholder="01012345678">
+</div>
+
+<div class="form-group">
+<label>매장 상세주소 <span class="required">*</span></label>
+<input type="text" name="address" required placeholder="매장 주소를 입력해주세요">
+</div>
+
+<div class="form-group">
+<label>매장운영 여부 <span class="required">*</span></label>
+<div class="checkbox-group">
+<div class="checkbox-item">
+<input type="radio" id="operating_yes" name="operatingStatus" value="운영중" required>
+<label for="operating_yes">운영중</label>
+</div>
+<div class="checkbox-item">
+<input type="radio" id="operating_no" name="operatingStatus" value="준비중">
+<label for="operating_no">준비중</label>
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label>매장규모 <span class="required">*</span></label>
+<input type="text" name="shopSize" required placeholder="예 : 20평"> </div>
+
+<div class="form-group">
+<label>취급 틴팅 브랜드 <span class="required">*</span></label>
+<div class="checkbox-group" style="grid-template-columns:repeat(3,1fr);">
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="3M">
+<label>3M</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="글라스틴트">
+<label>글라스틴트</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="디텍">
+<label>디텍</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="레이노">
+<label>레이노</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="레인보우">
+<label>레인보우</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="루마/버텍스">
+<label>루마/버텍스</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="블락포">
+<label>블락포</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="솔라가드">
+<label>솔라가드</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="솔라가드LX">
+<label>솔라가드LX</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="스미스클럽">
+<label>스미스클럽</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="썬가드">
+<label>썬가드</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="아마테라스">
+<label>아마테라스</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="존슨">
+<label>존슨</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="지벤트">
+<label>지벤트</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="칼트윈">
+<label>칼트윈</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="티나인">
+<label>티나인</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="티벡스">
+<label>티벡스</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="틴트">
+<label>틴트</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="어카">
+<label>어카</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="하버">
+<label>하버</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="캠프">
+<label>캠프</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="후퍼">
+<label>후퍼</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="옵틱">
+<label>옵틱</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="SKC">
+<label>SKC</label>
+</div>
+<div class="checkbox-item">
+<input type="checkbox" name="brands" value="기타">
+<label>기타</label>
+</div>
+</div>
+</div>
+
+<div class="form-group" id="otherBrandGroup" style="display:none;">
+<label>기타 브랜드명</label>
+<input type="text" name="otherBrand" placeholder="브랜드명을 입력해주세요">
+</div>
+
+<div class="form-group">
+<label>기타 요청사항 <span class="required">*</span></label>
+<textarea name="message" required placeholder="설치 희망일, 문의사항 등을 적어주세요"></textarea>
+</div>
+
+<div class="form-group">
+<div class="checkbox-item">
+<input type="checkbox" id="agree1" name="agree1" required>
+<label for="agree1">개인정보 활용 동의 <span class="required">*</span></label>
+</div>
+<div style="background:#0a0a0a; border:1px solid #333; padding:15px; margin-top:10px; border-radius:4px; font-size:12px; color:#aaa; line-height:1.8;">
+1. 개인정보 수집 및 이용목적 : 가맹점 개설 문의 상담 목적 외 사용하지 않음<br>
+2. 수집 항목 : 이름, 연락처, 주소, 매장운영 여부, 매장규모, 취급브랜드, 기타 요청사항<br>
+3. 보유 및 이용기간 : 3개월, 이후 즉시 파기
+</div>
+</div>
+
+<div class="form-group">
+<div class="checkbox-item">
+<input type="checkbox" id="agree2" name="agree2" required>
+<label for="agree2">제3자 정보제공 동의 <span class="required">*</span></label>
+</div>
+<div style="background:#0a0a0a; border:1px solid #333; padding:15px; margin-top:10px; border-radius:4px; font-size:12px; color:#aaa; line-height:1.8;">
+1. 개인정보를 제공받는 자 : 팅글라 본사<br>
+2. 개인정보를 제공받는 자의 이용 목적 : 상담 목적 외 사용 하지 않음<br>
+3. 제공 항목 : 이름, 연락처, 주소, 매장운영 여부, 매장규모, 취급브랜드, 기타 요청사항<br>
+4. 보유 및 이용기간 : 3개월, 이후 즉시 파기
+</div>
+</div>
+
+<div class="form-actions">
+<button type="submit" class="submit-btn">신청하기</button>
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<footer>
+
+<div class="footer-inner">
+
+<div class="footer-top">
+<img src="logo_tingla.png" alt="팅글라 로고" class="footer-logo" onclick="goHome()">
+
+<div class="family-site">
+<select id="familySiteSelect" class="family-site-select" onchange="moveFamilySite(this)">
+<option value="">패밀리 사이트</option>
+</select>
+</div>
+</div>
+
+<div class="footer-info">
+<p>(주)팅글라</p>
+<p>주소ㅣ서울시 서초구 동산로 48, 402호</p>
+<p>사업자등록번호ㅣ634-88-03318</p>
+<p>고객문의ㅣ<a href="tel:07051518699">070.5151.8699</a></p>
+<p>통신판매업신고번호ㅣ2026-서울서초-0015</p>
+</div>
+
+<div class="footer-copyright">
+© <span class="tingla-brand">TINGLA GUIDE</span>
+</div>
+
+</div>
+
+</footer>
+
+<div class="scroll-btn top" onclick="scrollToTop()"></div>
+
+<script>
+
+function toggleMenu(){
+
+var menu=document.getElementById("mobileMenu");
+
+menu.classList.toggle("show");
+
+}
+
+function goHome(){
+
+window.location.href = "index.html";
+
+}
+
+var familySiteOptions = [
+{
+label: "팅글라 공식홈페이지",
+url: "https://smartstore.naver.com/tingla"
+}
+];
+
+function initFamilySiteSelect(){
+
+var familySiteSelect = document.getElementById("familySiteSelect");
+
+if(!familySiteSelect){
+return;
+}
+
+while(familySiteSelect.options.length > 1){
+familySiteSelect.remove(1);
+}
+
+for(var optionIndex = 0; optionIndex < familySiteOptions.length; optionIndex++){
+var optionData = familySiteOptions[optionIndex];
+var optionElement = document.createElement("option");
+optionElement.value = optionData.url;
+optionElement.textContent = optionData.label;
+familySiteSelect.appendChild(optionElement);
+}
+
+}
+
+function moveFamilySite(selectElement){
+
+if(selectElement.value){
+window.open(selectElement.value, '_blank', 'noopener,noreferrer');
+selectElement.value = '';
+}
+
+selectElement.blur();
+
+}
+
+document.getElementById('certificationForm').addEventListener('submit', function(e){
+e.preventDefault();
+
+var form = this;
+var selectedBrands = document.querySelectorAll('input[name="brands"]:checked');
+var brands = Array.from(selectedBrands).map(function(checkbox){
+return checkbox.value;
+}).join(', ');
+var operatingStatusInput = document.querySelector('input[name="operatingStatus"]:checked');
+var otherBrandInput = document.querySelector('input[name="otherBrand"]');
+
+var payload = new URLSearchParams();
+payload.append('name', document.querySelector('input[name="name"]').value);
+payload.append('phone', document.querySelector('input[name="phone"]').value);
+payload.append('address', document.querySelector('input[name="address"]').value);
+payload.append('operatingStatus', operatingStatusInput ? operatingStatusInput.value : '');
+payload.append('shopSize', document.querySelector('input[name="shopSize"]').value);
+payload.append('brands', brands);
+payload.append('otherBrand', otherBrandInput ? otherBrandInput.value : '');
+payload.append('message', document.querySelector('textarea[name="message"]').value);
+
+fetch('https://script.google.com/macros/s/AKfycbxC9wbMLF1H2O213M4bU0RrjOeYkJhzDXQi0zE5hU_PuycB0lmJxUtFFdgzqE6vmKbe2w/exec', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  },
+  body: payload.toString(),
+  mode: 'no-cors'
+})
+.then(function() {
+  alert('신청이 완료되었습니다. 곧 연락드리겠습니다.');
+  form.reset();
+  document.getElementById('otherBrandGroup').style.display = 'none';
+})
+.catch(function(error) {
+  console.error('Error:', error);
+  alert('오류가 발생했습니다. 다시 시도해주세요.');
+});
+});
+
+// 기타 브랜드 선택 시 텍스트 입력 필드 표시
+var phoneInput = document.querySelector('input[name="phone"]');
+
+if(phoneInput){
+phoneInput.addEventListener('input', function(){
+this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);
+});
+}
+
+var brandCheckboxes = document.querySelectorAll('input[name="brands"]');
+
+for(var brandIndex = 0; brandIndex < brandCheckboxes.length; brandIndex++){
+var brandCheckbox = brandCheckboxes[brandIndex];
+var brandLabel = brandCheckbox.nextElementSibling;
+
+if(brandLabel && brandLabel.tagName.toLowerCase() === 'label'){
+if(!brandCheckbox.id){
+brandCheckbox.id = 'brand_' + brandIndex;
+}
+
+if(!brandLabel.getAttribute('for')){
+brandLabel.setAttribute('for', brandCheckbox.id);
+}
+}
+}
+
+brandCheckboxes.forEach(function(checkbox){
+checkbox.addEventListener('change', function(){
+var otherBrandGroup = document.getElementById('otherBrandGroup');
+var otherBrandCheckbox = Array.from(brandCheckboxes).find(cb => cb.value === '기타');
+if(otherBrandCheckbox && otherBrandCheckbox.checked){
+otherBrandGroup.style.display = 'block';
+} else {
+otherBrandGroup.style.display = 'none';
+}
+});
+});
+
+initFamilySiteSelect();
+
+// 메뉴 외부 클릭 시 메뉴 닫기
+document.addEventListener('click', function(event) {
+  var menu = document.getElementById("mobileMenu");
+  var toggleBtn = document.querySelector(".menu-toggle");
+  
+  if (!menu.contains(event.target) && !toggleBtn.contains(event.target)) {
+    menu.classList.remove("show");
+  }
+});
+
+function scrollToTop(){
+
+window.scrollTo({top: 0, behavior: 'smooth'});
+
+}
+
+</script>
+
+</body>
+</html>

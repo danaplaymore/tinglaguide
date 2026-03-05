@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TINGLA GUIDE</title>
+<meta name="description" content="프리미엄 자동차 썬팅 브랜드 팅글라 시공사 인증 가이드">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TINGLA GUIDE">
+<meta property="og:description" content="프리미엄 자동차 썬팅 브랜드 팅글라 시공사 인증 가이드">
+<meta property="og:image" content="og_tinglaguide.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TINGLA GUIDE">
+<meta name="twitter:description" content="프리미엄 자동차 썬팅 브랜드 팅글라 시공사 인증 가이드">
+<meta name="twitter:image" content="og_tinglaguide.png">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#0a0a0a;
+color:white;
+line-height:1.6;
+}
+
+/* ================= HEADER ================= */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#000;
+padding:20px 10%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid #222;
+z-index:999;
+}
+
+.logo{
+height:60px;
+}
+
+/* PC 메뉴 */
+
+nav{
+display:flex;
+gap:30px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-size:15px;
+opacity:0.85;
+}
+
+nav a:hover{
+opacity:1;
+}
+
+/* 햄버거 */
+
+.menu-toggle{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* ================= MOBILE MENU ================= */
+
+.mobile-menu{
+
+position:fixed;
+top:0;
+right:-100%;
+width:50%;
+height:100%;
+background:#000;
+display:flex;
+flex-direction:column;
+padding-top:100px;
+transition:0.3s;
+z-index:998;
+
+}
+
+.mobile-menu a{
+
+padding:20px 30px;
+border-bottom:1px solid #111;
+text-decoration:none;
+color:white;
+font-size:16px;
+
+}
+
+.mobile-menu.show{
+
+right:0;
+
+}
+
+/* ================= HERO ================= */
+
+section{
+padding:120px 10%;
+border-bottom:1px solid #222;
+}
+
+section p{
+color:#aaa;
+}
+
+.hero{
+padding-top:200px;
+text-align:center;
+}
+
+.hero h1{
+font-size:60px;
+margin-bottom:8px;
+letter-spacing:-2px;
+filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.3));
+position:relative;
+display:inline-block;
+}
+
+.hero-title-text{
+position:relative;
+display:inline-block;
+color:#D4AF37;
+text-shadow:0 1px 2px rgba(0,0,0,0.34);
+isolation:isolate;
+animation:titleGlow 4.8s ease-in-out infinite;
+}
+
+.hero-title-text::before{
+content:attr(data-text);
+position:absolute;
+left:0;
+top:0;
+width:100%;
+height:100%;
+pointer-events:none;
+background:linear-gradient(180deg, #F2D987 0%, #E5C158 30%, #D4AF37 62%, #A97B08 100%);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+-webkit-text-fill-color:transparent;
+opacity:0.95;
+z-index:1;
+}
+
+.hero-title-text::after{
+content:attr(data-text);
+position:absolute;
+left:0;
+top:0;
+width:100%;
+height:100%;
+pointer-events:none;
+background:linear-gradient(110deg,
+rgba(255,255,255,0) 0%,
+rgba(255,255,255,0.06) 35%,
+rgba(255,255,255,0.72) 48%,
+rgba(255,255,255,0.94) 50%,
+rgba(255,255,255,0.72) 52%,
+rgba(255,255,255,0.06) 65%,
+rgba(255,255,255,0) 100%);
+background-size:190% 100%;
+background-position:130% 50%;
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+-webkit-text-fill-color:transparent;
+opacity:0.56;
+filter:drop-shadow(0 0 8px rgba(255,255,255,0.45));
+z-index:2;
+animation:titleSheen 5.6s ease-in-out infinite;
+}
+
+.hero h1 + p{
+font-size:34px;
+margin-bottom:24px;
+margin-top:-15px;
+color:white;
+}
+
+.hero p{
+font-size:20px;
+color:#aaa;
+max-width:700px;
+margin:auto;
+}
+
+.hero p:last-of-type{
+font-size:18px;
+}
+
+.hero-img{
+max-width:350px;
+width:100%;
+height:auto;
+margin:0;
+display:block;
+background-color:#000;
+position:relative;
+z-index:1;
+}
+
+.hero-image-wrap{
+position:relative;
+max-width:350px;
+width:100%;
+margin:15px auto 0;
+}
+
+.sparkle{
+position:absolute;
+left:50%;
+top:50%;
+z-index:2;
+width:var(--size, 6px);
+height:var(--size, 6px);
+background:radial-gradient(circle, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.3) 44%, rgba(255,255,255,0) 76%);
+border-radius:50%;
+pointer-events:none;
+opacity:0;
+filter:drop-shadow(0 0 4px rgba(255,255,255,0.5));
+transform:translate(-50%, -50%) scale(0.68);
+animation:sparkleTwinkle 4.8s ease-in-out infinite;
+}
+
+.sparkle::before,
+.sparkle::after{
+content:'';
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%, -50%);
+background:rgba(255,255,255,0.48);
+border-radius:2px;
+}
+
+.sparkle::before{
+width:1px;
+height:calc(var(--size, 6px) * 2.2);
+}
+
+.sparkle::after{
+height:1px;
+width:calc(var(--size, 6px) * 2.2);
+}
+
+.sparkle.s1{left:12%; top:18%; --size:6px; animation-delay:-0.7s; animation-duration:4.9s;}
+.sparkle.s2{left:25%; top:11%; --size:5px; animation-delay:-2.1s; animation-duration:4.6s;}
+.sparkle.s3{left:48%; top:14%; --size:7px; animation-delay:-1.3s; animation-duration:5.2s;}
+.sparkle.s4{left:70%; top:10%; --size:5px; animation-delay:-2.8s; animation-duration:4.3s;}
+.sparkle.s5{left:84%; top:23%; --size:6px; animation-delay:-0.5s; animation-duration:4.8s;}
+.sparkle.s6{left:16%; top:44%; --size:5px; animation-delay:-1.8s; animation-duration:4.7s;}
+.sparkle.s7{left:34%; top:60%; --size:8px; animation-delay:-2.4s; animation-duration:5.4s;}
+.sparkle.s8{left:57%; top:52%; --size:5px; animation-delay:-1s; animation-duration:4.5s;}
+.sparkle.s9{left:80%; top:47%; --size:8px; animation-delay:-2s; animation-duration:5.6s;}
+.sparkle.s10{left:21%; top:79%; --size:6px; animation-delay:-1.2s; animation-duration:4.9s;}
+.sparkle.s11{left:47%; top:88%; --size:7px; animation-delay:-2.7s; animation-duration:5.1s;}
+.sparkle.s12{left:74%; top:77%; --size:5px; animation-delay:-0.6s; animation-duration:4.4s;}
+
+@keyframes sparkleTwinkle{
+0%, 100%{
+opacity:0;
+transform:translate(-50%, -50%) scale(0.68);
+}
+20%{
+opacity:0.42;
+transform:translate(-50%, -50%) scale(0.92);
+}
+38%{
+opacity:0.15;
+transform:translate(-50%, -50%) scale(0.82);
+}
+56%{
+opacity:0.58;
+transform:translate(-50%, -50%) scale(1);
+}
+72%{
+opacity:0;
+transform:translate(-50%, -50%) scale(0.74);
+}
+}
+
+@keyframes titleGlow{
+0%, 100%{
+filter:drop-shadow(0 0 3px rgba(229,193,88,0.22));
+}
+36%{
+filter:drop-shadow(0 0 9px rgba(229,193,88,0.5));
+}
+62%{
+filter:drop-shadow(0 0 5px rgba(229,193,88,0.3));
+}
+}
+
+@keyframes titleSheen{
+0%, 100%{
+background-position:130% 50%;
+opacity:0;
+}
+14%{
+opacity:0;
+}
+30%{
+opacity:0.72;
+}
+48%{
+opacity:0.22;
+}
+62%{
+background-position:-45% 50%;
+opacity:0.6;
+}
+74%{
+background-position:-60% 50%;
+opacity:0;
+}
+}
+
+@media (prefers-reduced-motion: reduce){
+
+.sparkle{
+animation:none;
+opacity:0.28;
+}
+
+.hero-title-text,
+.hero-title-text::after{
+animation:none;
+}
+
+.hero-title-text::after{
+opacity:0.18;
+}
+
+.reveal-target{
+transition:none !important;
+}
+
+body.reveal-ready .reveal-target{
+opacity:1 !important;
+transform:none !important;
+filter:none !important;
+}
+
+}
+
+.section-img-desktop,
+.section-img-mobile{
+width:90%;
+height:auto;
+display:block;
+margin:30px auto 40px;
+}
+
+.section-img-mobile{
+display:none;
+}
+
+.btn{
+display:inline-block;
+margin-top:40px;
+padding:18px 40px;
+background:white;
+color:black;
+font-weight:bold;
+text-decoration:none;
+}
+
+.btn-gold{
+display:inline-block;
+margin-top:40px;
+padding:18px 40px;
+background:#111;
+color:#C8B88C;
+border:1px solid #C8B88C;
+font-weight:bold;
+text-decoration:none;
+transition:all 0.3s;
+}
+
+.btn-gold:hover{
+background:#C8B88C;
+color:#000;
+}
+
+/* ================= GRID ================= */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:40px;
+margin-top:40px;
+}
+
+.grid3{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-top:40px;
+}
+
+.card{
+background:#111;
+padding:40px;
+border:1px solid #333;
+}
+
+.card > p:first-of-type{
+color:#999;
+font-style:italic;
+}
+
+.card-other > p{
+color:#aaa;
+font-style:normal;
+}
+
+.center{
+text-align:center;
+}
+
+.underline-gold{
+text-decoration:underline;
+text-decoration-color:#C8B88C;
+text-underline-offset:4px;
+}
+
+.tingla-brand{
+color:#C8B88C;
+}
+
+.mobile-break{
+display:none;
+}
+
+.map{
+height:400px;
+background:#111;
+border:1px solid #333;
+margin-top:40px;
+}
+
+.cta-box{
+max-width:900px;
+margin:0 auto;
+background:#111;
+border:1px solid #333;
+padding:50px 30px;
+}
+
+.cta-box h3{
+font-size:34px;
+line-height:1.4;
+color:#C8B88C;
+font-weight:normal;
+}
+
+.cta-box p{
+margin-top:24px;
+font-size:20px;
+color:white;
+}
+
+footer{
+padding:60px 10%;
+background:#000;
+color:#777;
+font-size:14px;
+}
+
+.footer-inner{
+max-width:1100px;
+margin:0 auto;
+}
+
+.footer-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+margin-bottom:26px;
+}
+
+.footer-logo{
+height:42px;
+width:auto;
+}
+
+.family-site-select{
+background:#000;
+color:white;
+border:1px solid #333;
+padding:10px 14px;
+font-size:14px;
+min-width:220px;
+cursor:pointer;
+}
+
+.family-site-select:focus{
+outline:none;
+border-color:#C8B88C;
+}
+
+.footer-info p{
+margin-bottom:8px;
+}
+
+.footer-info a{
+color:#777;
+text-decoration:none;
+}
+
+.footer-info a:hover{
+color:white;
+}
+
+.region-buttons{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:15px;
+margin:30px 0;
+}
+
+.region-btn{
+padding:12px 16px;
+background:#111;
+border:1px solid #333;
+color:#aaa;
+cursor:pointer;
+border-radius:4px;
+font-size:14px;
+transition:all 0.3s;
+}
+
+.region-btn:hover{
+border-color:#C8B88C;
+color:white;
+}
+
+.region-btn.active{
+background:#C8B88C;
+color:#000;
+border-color:#C8B88C;
+}
+
+.shop-list{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+margin-top:30px;
+}
+
+.shop-item{
+background:#111;
+padding:20px;
+border:1px solid #333;
+border-radius:4px;
+}
+
+.shop-item h4{
+font-size:16px;
+margin-bottom:8px;
+color:#C8B88C;
+}
+
+.shop-item p{
+font-size:14px;
+color:#aaa;
+margin-bottom:6px;
+}
+
+.footer-info a:hover{
+color:white;
+}
+
+.footer-copyright{
+text-align:center;
+border-top:1px solid #333;
+margin-top:30px;
+padding-top:20px;
+color:#555;
+font-size:12px;
+}
+
+.logo{
+height:60px;
+cursor:pointer;
+}
+
+.scroll-btn{
+position:fixed;
+bottom:30px;
+right:30px;
+width:50px;
+height:50px;
+border-radius:50%;
+background:#111;
+border:2px solid #333;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:2px;
+cursor:pointer;
+z-index:100;
+transition:all 0.3s;
+}
+
+.scroll-btn:hover{
+background:#222;
+border-color:#C8B88C;
+}
+
+.scroll-btn.top::after{
+content:'↑';
+font-size:24px;
+color:#C8B88C;
+font-weight:bold;
+}
+
+.reveal-target{
+will-change:opacity, transform, filter;
+transition:
+opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.reveal-ready .reveal-target{
+opacity:0;
+transform:translate3d(0, 24px, 0);
+filter:blur(2px);
+}
+
+body.reveal-ready .hero .reveal-target{
+transform:translate3d(0, 20px, 0);
+}
+
+body.reveal-ready .card.reveal-target,
+body.reveal-ready .shop-item.reveal-target{
+transform:translate3d(0, 20px, 0) scale(0.985);
+}
+
+body.reveal-ready .reveal-target.reveal-visible{
+opacity:1;
+transform:translate3d(0, 0, 0) scale(1);
+filter:blur(0);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+nav{
+display:none;
+}
+
+.menu-toggle{
+display:block;
+}
+
+.hero p:last-of-type{
+font-size:16px;
+}
+
+.hero{
+padding-top:160px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.grid3{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+.hero h1 + p{
+font-size:22px;
+margin-top:-15px;
+color:white;
+}
+
+.logo{
+height:55px;
+}
+
+.section-img-desktop{
+display:none;
+}
+
+.section-img-mobile{
+display:block;
+}
+
+.mobile-break{
+display:inline;
+}
+
+.cta-box{
+padding:35px 20px;
+}
+
+.cta-box h3{
+font-size:26px;
+}
+
+.cta-box p{
+font-size:17px;
+}
+
+.footer-top{
+flex-direction:column;
+align-items:flex-start;
+margin-bottom:22px;
+}
+
+.footer-logo{
+height:38px;
+}
+
+.family-site-select{
+width:100%;
+}
+
+.region-buttons{
+grid-template-columns:repeat(2,1fr);
+}
+
+.shop-list{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<img src="logo_tingla.png" class="logo" onclick="refreshHome()">
+
+<nav>
+
+<a href="product.html">제품 소개</a>
+<a href="pricing.html">가격표</a>
+<a href="https://smartstore.naver.com/tingla" target="_blank" rel="noopener noreferrer">구매하기</a>
+<a href="shops.html">시공점 찾기</a>
+<a href="certification.html">시공점 인증 신청</a>
+
+</nav>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+</header>
+
+
+<!-- 모바일 메뉴 -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+<a href="product.html">제품 소개</a>
+<a href="pricing.html">가격표</a>
+<a href="https://smartstore.naver.com/tingla" target="_blank" rel="noopener noreferrer">구매하기</a>
+<a href="shops.html">시공점 찾기</a>
+<a href="certification.html">시공점 인증 신청</a>
+
+</div>
+
+
+<section class="hero">
+
+<div class="hero-image-wrap">
+<img src="img_h1.png" alt="TINGLA GUIDE" class="hero-img">
+<span class="sparkle s1"></span>
+<span class="sparkle s2"></span>
+<span class="sparkle s3"></span>
+<span class="sparkle s4"></span>
+<span class="sparkle s5"></span>
+<span class="sparkle s6"></span>
+<span class="sparkle s7"></span>
+<span class="sparkle s8"></span>
+<span class="sparkle s9"></span>
+<span class="sparkle s10"></span>
+<span class="sparkle s11"></span>
+<span class="sparkle s12"></span>
+</div>
+
+<h1><span class="tingla-brand hero-title-text" data-text="TINGLA GUIDE">TINGLA GUIDE</span></h1>
+
+<p>
+썬팅 시공의 새로운 기준
+</p>
+
+<p>
+<span class="tingla-brand">TINGLA GUIDE</span>는
+전문 시공점의 기술력과 서비스 수준을 평가해
+신뢰할 수 있는 시공점을 선정하는 인증 시스템입니다.
+</p>
+
+<a class="btn-gold" href="shops.html">인증 시공점 찾기</a>
+
+</section>
+
+
+<section>
+
+<img src="img_h2.png" alt="" class="section-img-desktop">
+<img src="img_h2_mob.png" alt="" class="section-img-mobile">
+
+<h2>왜 <span class="tingla-brand">TINGLA GUIDE</span>가 필요한가</h2>
+
+<p>
+지금까지 썬팅 시장은
+시공 품질을 객관적으로 확인할 방법이 없었습니다.
+</p>
+
+<p>
+같은 필름이라도
+시공점에 따라 결과는 완전히 달라집니다.
+</p>
+
+<p>
+<span class="tingla-brand">TINGLA GUIDE</span>는
+<span class="underline-gold">기술력 · 고객 만족도 · 시공 환경을 기준으로
+검증된 시공점만을 선정</span>합니다.
+</p>
+
+</section>
+
+
+<section>
+
+<h2><span class="tingla-brand">TINGLA GUIDE</span> 평가 시스템</h2>
+
+<p>
+TINGLA는 자체 평가 기준을 통해
+시공점을 정기적으로 평가합니다.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>시공 기술력</h3>
+<p>전문 시공 기술과 작업 완성도 평가</p>
+<p style="font-size:14px; margin-top:15px;">경력 및 숙련도 | 대표 틴터의 경력 및 스퍼터 필름 시공 경험 | 쉐이빙 기술 숙련도</p>
+</div>
+
+<div class="card">
+<h3>작업 환경</h3>
+<p>전문 장비와 시공 환경</p>
+<p style="font-size:14px; margin-top:15px;">클린룸 보유여부 | 독립 공간 보유 여부 | 고광도 조명 설비 보유 여부</p>
+</div>
+
+<div class="card">
+<h3>고객 만족도</h3>
+<p>실제 고객 리뷰 기반 평가</p>
+<p style="font-size:14px; margin-top:15px;">고객 대기실 환경 | 모니터링 가능 여부</p>
+</div>
+
+<div class="card">
+<h3>사후 서비스</h3>
+<p>문제 발생 시 대응 능력</p>
+<p style="font-size:14px; margin-top:15px;">AS 정책 평가 | 고객 대응 체계 및 책임감</p>
+</div>
+
+<div class="card card-other">
+<h3>기타 항목</h3>
+<p>그 외 다양한 항목 평가</p>
+<p style="font-size:14px; margin-top:15px;">마케팅 채널을 통한 소통 능력ㅣ동호회 및 커뮤니티 내 평판</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="center">
+
+<h2><span class="tingla-brand">TINGLA GUIDE</span> 인증 시공점</h2>
+
+<p>
+<span class="tingla-brand">TINGLA GUIDE</span> 인증을 받은 시공점은  
+TINGLA의 품질 기준을 충족한 공식 인증 시공점입니다.
+</p>
+
+<img src="img_h3.png" alt="" class="section-img-desktop">
+<img src="img_h3_mob.png" alt="" class="section-img-mobile">
+
+</section>
+
+
+<section>
+
+<h2>고객 혜택</h2>
+
+<p>
+<span class="tingla-brand">TINGLA GUIDE</span> 인증 시공점에서
+TINGLA 필름을 시공하는 고객에게는
+특별한 혜택이 제공됩니다.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>✔ 평생 무상 A/S</h3>
+</div>
+
+<div class="card">
+<h3>✔ 정품 필름 보증</h3>
+</div>
+
+<div class="card">
+<h3>✔ 공식 시공 인증</h3>
+</div>
+
+<div class="card">
+<h3>✔ 전국 시공 네트워크 지원</h3>
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>파트너 시공점 혜택</h2>
+
+<p>
+<span class="tingla-brand">TINGLA GUIDE</span> 인증 시공점은
+TINGLA 공식 네트워크에 등록됩니다.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>✔ 공식 인증 팻말 제공</h3>
+</div>
+
+<div class="card">
+<h3>✔ 홈페이지 시공점 소개</h3>
+</div>
+
+<div class="card">
+<h3>✔ 고객 연결 시스템</h3>
+</div>
+
+<div class="card">
+<h3>✔ 마케팅 지원</h3>
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2><span class="tingla-brand">TINGLA GUIDE</span> 시공점 찾기</h2>
+
+<div class="region-buttons" id="regionButtons"></div>
+
+<div class="shop-list" id="shopList"></div>
+
+<div style="text-align:center; margin-top:50px;">
+<a class="btn-gold" href="certification.html">시공점 인증 신청하기</a>
+</div>
+
+</section>
+
+
+<section class="center">
+
+<h2>
+썬팅은 필름만이 아니라<span class="mobile-break"><br></span>
+시공까지 완성입니다
+</h2>
+
+<p>
+<span class="tingla-brand">TINGLA GUIDE</span>는 자동차 썬팅의 새로운 기준을 만듭니다.
+</p>
+
+<div class="cta-box" style="margin-top:50px;">
+
+<h3>품격있는 시작.<br>팅글라와 함께 하세요.</h3>
+
+<p><a href="https://smartstore.naver.com/tingla" target="_blank" rel="noopener noreferrer" style="color:white;text-decoration:none;cursor:pointer;">간편하게 견적 확인하고 예약하기 &gt;</a></p>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<div class="footer-inner">
+
+<div class="footer-top">
+<img src="logo_tingla.png" alt="팅글라 로고" class="footer-logo" onclick="refreshHome()">
+
+<div class="family-site">
+<select id="familySiteSelect" class="family-site-select" onchange="moveFamilySite(this)">
+<option value="">패밀리 사이트</option>
+</select>
+</div>
+</div>
+
+<div class="footer-info">
+<p>(주)팅글라</p>
+<p>주소ㅣ서울시 서초구 동산로 48, 402호</p>
+<p>사업자등록번호ㅣ634-88-03318</p>
+<p>고객문의ㅣ<a href="tel:07051518699">070.5151.8699</a></p>
+<p>통신판매업신고번호ㅣ2026-서울서초-0015</p>
+</div>
+
+<div class="footer-copyright">
+© <span class="tingla-brand">TINGLA GUIDE</span>
+</div>
+
+</div>
+
+</footer>
+
+
+<div class="scroll-btn top" onclick="scrollToTop()"></div>
+
+
+<script>
+
+function toggleMenu(){
+
+var menu=document.getElementById("mobileMenu");
+
+menu.classList.toggle("show");
+
+}
+
+function refreshHome(){
+
+window.scrollTo(0, 0);
+location.reload();
+
+}
+
+var familySiteOptions = [
+{
+label: "팅글라 공식홈페이지",
+url: "https://smartstore.naver.com/tingla"
+}
+];
+
+var shopData = {
+서울: [
+{name: "팅글라 안심파트너 양재점", address: "서울특별시 서초구 강남대로 8길3 39-48, 1층", phone: "02-529-1566", url: "https://naver.me/FSw7CB9v"},
+{name: "팅글라 안심파트너 송파점", address: "서울특별시 서초구 강남대로 8길3 39-48, 1층", phone: "02-416-5790", url: "https://naver.me/xeASFgsu"}
+],
+인천: [],
+경기: [],
+강원: [],
+충북: [],
+충남: [],
+세종: [],
+대전: [],
+경북: [],
+경남: [],
+대구: [],
+울산: [],
+부산: [],
+광주: [],
+전북: [],
+전남: [],
+제주: []
+};
+
+var revealObserver = null;
+
+function initFamilySiteSelect(){
+
+var familySiteSelect = document.getElementById("familySiteSelect");
+
+if(!familySiteSelect){
+return;
+}
+
+while(familySiteSelect.options.length > 1){
+familySiteSelect.remove(1);
+}
+
+for(var optionIndex = 0; optionIndex < familySiteOptions.length; optionIndex++){
+var optionData = familySiteOptions[optionIndex];
+var optionElement = document.createElement("option");
+optionElement.value = optionData.url;
+optionElement.textContent = optionData.label;
+familySiteSelect.appendChild(optionElement);
+}
+
+}
+
+function moveFamilySite(selectElement){
+
+if(selectElement.value){
+window.open(selectElement.value, '_blank', 'noopener,noreferrer');
+selectElement.value = '';
+}
+
+selectElement.blur();
+
+}
+
+function initRegionButtons(){
+
+var regionButtonsContainer = document.getElementById("regionButtons");
+
+if(!regionButtonsContainer){
+return;
+}
+
+var regions = Object.keys(shopData);
+
+for(var i = 0; i < regions.length; i++){
+var region = regions[i];
+var button = document.createElement("button");
+button.className = "region-btn";
+button.textContent = region;
+button.onclick = function(){
+selectRegion(this.textContent);
+};
+regionButtonsContainer.appendChild(button);
+}
+
+selectRegion("서울");
+
+}
+
+function selectRegion(region){
+
+var buttons = document.querySelectorAll(".region-btn");
+buttons.forEach(function(btn){
+if(btn.textContent === region){
+btn.classList.add("active");
+} else {
+btn.classList.remove("active");
+}
+});
+
+var shopListContainer = document.getElementById("shopList");
+shopListContainer.innerHTML = "";
+
+var shops = shopData[region] || [];
+
+if(shops.length === 0){
+var emptyMessage = document.createElement("div");
+emptyMessage.style.cssText = "grid-column:1/-1;text-align:center;padding:40px;color:#aaa;font-size:16px;";
+emptyMessage.textContent = "지점 평가 진행 중입니다.";
+shopListContainer.appendChild(emptyMessage);
+registerRevealElements(shopListContainer.children);
+return;
+}
+
+for(var i = 0; i < shops.length; i++){
+var shop = shops[i];
+var shopItem = document.createElement("div");
+shopItem.className = "shop-item";
+if(shop.url){
+shopItem.style.cursor = "pointer";
+shopItem.onclick = function(url){
+return function(){
+window.open(url, '_blank', 'noopener,noreferrer');
+};
+}(shop.url);
+shopItem.innerHTML = "<h4>" + shop.name + "</h4>" +
+"<p>주소: " + shop.address + "</p>" +
+"<p>전화: " + shop.phone + "</p>" +
+"<p style='color:#C8B88C;margin-top:8px;font-size:13px;'>📍 지점 보기 →</p>";
+} else {
+shopItem.innerHTML = "<h4>" + shop.name + "</h4>" +
+"<p>주소: " + shop.address + "</p>" +
+"<p>전화: " + shop.phone + "</p>";
+}
+shopListContainer.appendChild(shopItem);
+}
+
+registerRevealElements(shopListContainer.children);
+
+}
+
+function registerRevealElements(elements){
+
+if(!elements || !elements.length){
+return;
+}
+
+for(var i = 0; i < elements.length; i++){
+var element = elements[i];
+
+if(!element){
+continue;
+}
+
+if(!element.classList.contains("reveal-target")){
+element.classList.add("reveal-target");
+
+var section = element.closest("section");
+if(section){
+var sectionSequence = Number(section.getAttribute("data-reveal-sequence") || 0);
+element.style.transitionDelay = Math.min(sectionSequence * 85, 340) + "ms";
+section.setAttribute("data-reveal-sequence", sectionSequence + 1);
+}
+}
+
+if(revealObserver){
+revealObserver.observe(element);
+} else {
+element.classList.add("reveal-visible");
+}
+}
+
+}
+
+function initScrollReveal(){
+
+var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if(!reduceMotion){
+document.body.classList.add("reveal-ready");
+
+revealObserver = new IntersectionObserver(function(entries, observer){
+for(var i = 0; i < entries.length; i++){
+var entry = entries[i];
+
+if(entry.isIntersecting){
+entry.target.classList.add("reveal-visible");
+observer.unobserve(entry.target);
+}
+}
+}, {
+threshold: 0.14,
+rootMargin: "0px 0px -8% 0px"
+});
+}
+
+var revealSelectors = [
+".hero-image-wrap",
+".hero h1",
+".hero p",
+".hero .btn-gold",
+"section:not(.hero) h2",
+"section:not(.hero) > p",
+".section-img-desktop",
+".section-img-mobile",
+".card",
+"#regionButtons .region-btn",
+"#shopList > div",
+".cta-box",
+"footer .footer-inner"
+];
+
+var revealElements = document.querySelectorAll(revealSelectors.join(","));
+registerRevealElements(revealElements);
+
+}
+
+initFamilySiteSelect();
+initRegionButtons();
+initScrollReveal();
+
+// 메뉴 외부 클릭 시 메뉴 닫기
+document.addEventListener('click', function(event) {
+  var menu = document.getElementById("mobileMenu");
+  var toggleBtn = document.querySelector(".menu-toggle");
+  
+  if (!menu.contains(event.target) && !toggleBtn.contains(event.target)) {
+    menu.classList.remove("show");
+  }
+});
+
+function scrollToTop(){
+
+window.scrollTo({top: 0, behavior: 'smooth'});
+
+}
+
+</script>
+
+
+</body>
+</html>

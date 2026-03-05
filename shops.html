@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TINGLA GUIDE - 시공점 찾기</title>
+<meta name="description" content="프리미엄 자동차 썬팅 브랜드 팅글라 시공사 인증 가이드">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TINGLA GUIDE">
+<meta property="og:description" content="프리미엄 자동차 썬팅 브랜드 팅글라 시공사 인증 가이드">
+<meta property="og:image" content="og_tinglaguide.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TINGLA GUIDE">
+<meta name="twitter:description" content="프리미엄 자동차 썬팅 브랜드 팅글라 시공사 인증 가이드">
+<meta name="twitter:image" content="og_tinglaguide.png">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#0a0a0a;
+color:white;
+line-height:1.6;
+}
+
+/* ================= HEADER ================= */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#000;
+padding:20px 10%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid #222;
+z-index:999;
+}
+
+.logo{
+height:60px;
+cursor:pointer;
+}
+
+/* PC 메뉴 */
+
+nav{
+display:flex;
+gap:30px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-size:15px;
+opacity:0.85;
+}
+
+nav a:hover{
+opacity:1;
+}
+
+/* 햄버거 */
+
+.menu-toggle{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* ================= MOBILE MENU ================= */
+
+.mobile-menu{
+
+position:fixed;
+top:0;
+right:-100%;
+width:50%;
+height:100%;
+background:#000;
+display:flex;
+flex-direction:column;
+padding-top:100px;
+transition:0.3s;
+z-index:998;
+
+}
+
+.mobile-menu a{
+
+padding:20px 30px;
+border-bottom:1px solid #111;
+text-decoration:none;
+color:white;
+font-size:16px;
+
+}
+
+.mobile-menu.show{
+
+right:0;
+
+}
+
+/* ================= CONTENT ================= */
+
+section{
+padding:120px 10%;
+border-bottom:1px solid #222;
+}
+
+section p{
+color:#aaa;
+}
+
+.shops-wrap{
+max-width:1200px;
+margin:0 auto;
+padding:170px 10% 80px;
+}
+
+.shops-hero{
+margin-bottom:36px;
+}
+
+.shops-hero h1{
+font-size:24px;
+line-height:1.2;
+color:#fff;
+margin-bottom:10px;
+}
+
+.shops-hero h1 span{
+color:#C8B88C;
+}
+
+.shops-hero p{
+color:#aaa;
+font-size:20px;
+}
+
+.center{
+text-align:center;
+}
+
+.tingla-brand{
+color:#C8B88C;
+}
+
+.mobile-break{
+display:none;
+}
+
+.btn-gold{
+display:inline-block;
+margin-top:40px;
+padding:18px 40px;
+background:#111;
+color:#C8B88C;
+border:1px solid #C8B88C;
+font-weight:bold;
+text-decoration:none;
+transition:all 0.3s;
+}
+
+.btn-gold:hover{
+background:#C8B88C;
+color:#000;
+}
+
+.region-buttons{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:15px;
+margin:30px 0;
+}
+
+.region-btn{
+padding:12px 16px;
+background:#111;
+border:1px solid #333;
+color:#aaa;
+cursor:pointer;
+border-radius:4px;
+font-size:14px;
+transition:all 0.3s;
+}
+
+.region-btn:hover{
+border-color:#C8B88C;
+color:white;
+}
+
+.region-btn.active{
+background:#C8B88C;
+color:#000;
+border-color:#C8B88C;
+}
+
+.shop-list{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+margin-top:30px;
+}
+
+.shop-item{
+background:#111;
+padding:20px;
+border:1px solid #333;
+border-radius:4px;
+}
+
+.shop-item h4{
+font-size:16px;
+margin-bottom:8px;
+color:#C8B88C;
+}
+
+.shop-item p{
+font-size:14px;
+color:#aaa;
+margin-bottom:6px;
+}
+
+footer{
+padding:60px 10%;
+background:#000;
+color:#777;
+font-size:14px;
+}
+
+.footer-inner{
+max-width:1100px;
+margin:0 auto;
+}
+
+.footer-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+margin-bottom:26px;
+}
+
+.footer-logo{
+height:42px;
+width:auto;
+cursor:pointer;
+}
+
+.family-site-select{
+background:#000;
+color:white;
+border:1px solid #333;
+padding:10px 14px;
+font-size:14px;
+min-width:220px;
+cursor:pointer;
+}
+
+.family-site-select:focus{
+outline:none;
+border-color:#C8B88C;
+}
+
+.footer-info p{
+margin-bottom:8px;
+}
+
+.footer-info a{
+color:#777;
+text-decoration:none;
+}
+
+.footer-info a:hover{
+color:white;
+}
+
+.footer-copyright{
+text-align:center;
+border-top:1px solid #333;
+margin-top:30px;
+padding-top:20px;
+color:#555;
+font-size:12px;
+}
+
+.scroll-btn{
+position:fixed;
+bottom:30px;
+right:30px;
+width:50px;
+height:50px;
+border-radius:50%;
+background:#111;
+border:2px solid #333;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:2px;
+cursor:pointer;
+z-index:100;
+transition:all 0.3s;
+}
+
+.scroll-btn:hover{
+background:#222;
+border-color:#C8B88C;
+}
+
+.scroll-btn.top::after{
+content:'↑';
+font-size:24px;
+color:#C8B88C;
+font-weight:bold;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+nav{
+display:none;
+}
+
+.menu-toggle{
+display:block;
+}
+
+.logo{
+height:55px;
+}
+
+.shops-wrap{
+padding:135px 6% 60px;
+}
+
+.shops-hero h1{
+font-size:24px;
+}
+
+.shops-hero p{
+font-size:16px;
+}
+
+.region-buttons{
+grid-template-columns:repeat(2,1fr);
+}
+
+.shop-list{
+grid-template-columns:1fr;
+}
+
+.footer-top{
+flex-direction:column;
+align-items:flex-start;
+margin-bottom:22px;
+}
+
+.footer-logo{
+height:38px;
+}
+
+.family-site-select{
+width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<img src="logo_tingla.png" class="logo" onclick="goHome()">
+
+<nav>
+
+<a href="product.html">제품 소개</a>
+<a href="pricing.html">가격표</a>
+<a href="https://smartstore.naver.com/tingla" target="_blank" rel="noopener noreferrer">구매하기</a>
+<a href="shops.html">시공점 찾기</a>
+<a href="certification.html">시공점 인증 신청</a>
+
+</nav>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+
+<a href="product.html">제품 소개</a>
+<a href="pricing.html">가격표</a>
+<a href="https://smartstore.naver.com/tingla" target="_blank" rel="noopener noreferrer">구매하기</a>
+<a href="shops.html">시공점 찾기</a>
+<a href="certification.html">시공점 인증 신청</a>
+
+</div>
+
+<div class="shops-wrap">
+
+<div class="shops-hero">
+<h1><span class="tingla-brand">TINGLA GUIDE</span> 시공점 찾기</h1>
+</div>
+
+<div class="region-buttons" id="regionButtons"></div>
+
+<div class="shop-list" id="shopList"></div>
+
+<div style="text-align:center; margin-top:50px;">
+<a class="btn-gold" href="certification.html">시공점 인증 신청하기</a>
+</div>
+
+</div>
+
+<footer>
+
+<div class="footer-inner">
+
+<div class="footer-top">
+<img src="logo_tingla.png" alt="팅글라 로고" class="footer-logo" onclick="goHome()">
+
+<div class="family-site">
+<select id="familySiteSelect" class="family-site-select" onchange="moveFamilySite(this)">
+<option value="">패밀리 사이트</option>
+</select>
+</div>
+</div>
+
+<div class="footer-info">
+<p>(주)팅글라</p>
+<p>주소ㅣ서울시 서초구 동산로 48, 402호</p>
+<p>사업자등록번호ㅣ634-88-03318</p>
+<p>고객문의ㅣ<a href="tel:07051518699">070.5151.8699</a></p>
+<p>통신판매업신고번호ㅣ2026-서울서초-0015</p>
+</div>
+
+<div class="footer-copyright">
+© <span class="tingla-brand">TINGLA GUIDE</span>
+</div>
+
+</div>
+
+</footer>
+
+<div class="scroll-btn top" onclick="scrollToTop()"></div>
+
+<script>
+
+function toggleMenu(){
+
+var menu=document.getElementById("mobileMenu");
+
+menu.classList.toggle("show");
+
+}
+
+function goHome(){
+
+window.location.href = "index.html";
+
+}
+
+var familySiteOptions = [
+{
+label: "팅글라 공식홈페이지",
+url: "https://smartstore.naver.com/tingla"
+}
+];
+
+var shopData = {
+서울: [
+{name: "팅글라 안심파트너 양재점", address: "서울특별시 서초구 강남대로 8길3 39-48, 1층", phone: "02-529-1566", url: "https://naver.me/FSw7CB9v"},
+{name: "팅글라 안심파트너 송파점", address: "서울특별시 서초구 강남대로 8길3 39-48, 1층", phone: "02-416-5790", url: "https://naver.me/xeASFgsu"}
+],
+인천: [],
+경기: [],
+강원: [],
+충북: [],
+충남: [],
+세종: [],
+대전: [],
+경북: [],
+경남: [],
+대구: [],
+울산: [],
+부산: [],
+광주: [],
+전북: [],
+전남: [],
+제주: []
+};
+
+function initFamilySiteSelect(){
+
+var familySiteSelect = document.getElementById("familySiteSelect");
+
+if(!familySiteSelect){
+return;
+}
+
+while(familySiteSelect.options.length > 1){
+familySiteSelect.remove(1);
+}
+
+for(var optionIndex = 0; optionIndex < familySiteOptions.length; optionIndex++){
+var optionData = familySiteOptions[optionIndex];
+var optionElement = document.createElement("option");
+optionElement.value = optionData.url;
+optionElement.textContent = optionData.label;
+familySiteSelect.appendChild(optionElement);
+}
+
+}
+
+function moveFamilySite(selectElement){
+
+if(selectElement.value){
+window.open(selectElement.value, '_blank', 'noopener,noreferrer');
+selectElement.value = '';
+}
+
+selectElement.blur();
+
+}
+
+function initRegionButtons(){
+
+var regionButtonsContainer = document.getElementById("regionButtons");
+
+if(!regionButtonsContainer){
+return;
+}
+
+var regions = Object.keys(shopData);
+
+for(var i = 0; i < regions.length; i++){
+var region = regions[i];
+var button = document.createElement("button");
+button.className = "region-btn";
+button.textContent = region;
+button.onclick = function(){
+selectRegion(this.textContent);
+};
+regionButtonsContainer.appendChild(button);
+}
+
+selectRegion("서울");
+
+}
+
+function selectRegion(region){
+
+var buttons = document.querySelectorAll(".region-btn");
+buttons.forEach(function(btn){
+if(btn.textContent === region){
+btn.classList.add("active");
+} else {
+btn.classList.remove("active");
+}
+});
+
+var shopListContainer = document.getElementById("shopList");
+shopListContainer.innerHTML = "";
+
+var shops = shopData[region] || [];
+
+if(shops.length === 0){
+var emptyMessage = document.createElement("div");
+emptyMessage.style.cssText = "grid-column:1/-1;text-align:center;padding:40px;color:#aaa;font-size:16px;";
+emptyMessage.textContent = "지점 평가 진행 중입니다.";
+shopListContainer.appendChild(emptyMessage);
+return;
+}
+
+for(var i = 0; i < shops.length; i++){
+var shop = shops[i];
+var shopItem = document.createElement("div");
+shopItem.className = "shop-item";
+if(shop.url){
+shopItem.style.cursor = "pointer";
+shopItem.onclick = function(url){
+return function(){
+window.open(url, '_blank', 'noopener,noreferrer');
+};
+}(shop.url);
+shopItem.innerHTML = "<h4>" + shop.name + "</h4>" +
+"<p>주소: " + shop.address + "</p>" +
+"<p>전화: " + shop.phone + "</p>" +
+"<p style='color:#C8B88C;margin-top:8px;font-size:13px;'>📍 지점 보기 →</p>";
+} else {
+shopItem.innerHTML = "<h4>" + shop.name + "</h4>" +
+"<p>주소: " + shop.address + "</p>" +
+"<p>전화: " + shop.phone + "</p>";
+}
+shopListContainer.appendChild(shopItem);
+}
+
+}
+
+initFamilySiteSelect();
+initRegionButtons();
+
+// 메뉴 외부 클릭 시 메뉴 닫기
+document.addEventListener('click', function(event) {
+  var menu = document.getElementById("mobileMenu");
+  var toggleBtn = document.querySelector(".menu-toggle");
+  
+  if (!menu.contains(event.target) && !toggleBtn.contains(event.target)) {
+    menu.classList.remove("show");
+  }
+});
+
+function scrollToTop(){
+
+window.scrollTo({top: 0, behavior: 'smooth'});
+
+}
+
+</script>
+
+</body>
+</html>
